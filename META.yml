@@ -1,5 +1,5 @@
 ---
-abstract: "Merge two CSV files\r"
+abstract: "Fill in gaps in a CSV file from another CSV file\r"
 author:
   - 'Michael Gatto <mgatto@lisantra.com>'
 build_requires:
@@ -25,9 +25,7 @@ requires:
   Modern::Perl: 0
   Moo: 1.001000
   Text::CSV_XS: 0
-  lib: 0
   perl: 5.010
 resources:
-  homepage: https://github.com/mgatto/Merge-CSV
-  repository: https://github.com/mgatto/Merge-CSV.git
-version: 0.002
+  repository: git://github.com/mgatto/Merge-CSV.git
+version: 0.03

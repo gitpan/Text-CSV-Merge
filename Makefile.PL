@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Merge two CSV files\r",
+  "ABSTRACT" => "Fill in gaps in a CSV file from another CSV file\r",
   "AUTHOR" => "Michael Gatto <mgatto\@lisantra.com>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
@@ -29,15 +29,14 @@ my %WriteMakefileArgs = (
     "Log::Dispatch" => 0,
     "Modern::Perl" => 0,
     "Moo" => "1.001000",
-    "Text::CSV_XS" => 0,
-    "lib" => 0
+    "Text::CSV_XS" => 0
   },
   "TEST_REQUIRES" => {
     "Test::More" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.002",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }

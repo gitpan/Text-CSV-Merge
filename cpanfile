@@ -6,7 +6,6 @@ requires "Log::Dispatch" => "0";
 requires "Modern::Perl" => "0";
 requires "Moo" => "1.001000";
 requires "Text::CSV_XS" => "0";
-requires "lib" => "0";
 requires "perl" => "5.010";
 
 on 'test' => sub {

@@ -4,9 +4,6 @@
 
 use Modern::Perl;
 use Getopt::Long;
-use Log::Dispatch;
-#delete for release!
-use lib '../lib';
 use Text::CSV::Merge;
 
 ## Setup Options
@@ -29,11 +26,6 @@ GetOptions(
 # set column names for the hash; we'll use @columns more, later.
 @columns = split(/,/, join(',', @columns));
 
-# validate that search_field is one of the columns
-unless ($search_field ~~ @columns) {
-    die "Search parameter: '$search_field' is not one of the columns: @columns";
-}
-
 ## Merge rows!
 my $merger = Text::CSV::Merge->new({
     base    => $base_file,
@@ -45,8 +37,6 @@ my $merger = Text::CSV::Merge->new({
 });
 
 $merger->merge();
-
-# $log->info("DBI Conncted to CSV");
 
 # Ensure clean exit, since some shells don't save the command in history
 # without it.
@@ -62,7 +52,41 @@ merge_csv_files.pl - Command line client to Text::CSV::Merge
 
 =head1 VERSION
 
-version 0.002
+version 0.03
+
+=head1 Synopsis
+
+    merge_csv_files.pl \
+        --base=merge_into.csv \
+        --merge=merge_from.csv \ 
+        --columns=EMAIL,FNAME,LNAME,LOCATION,JAN,FEB,MAR,APR,MAY,JUN \
+        --output=merge.csv \
+        --search=EMAIL \
+        --first-row-is-headers
+
+=head1 Description
+
+You have two CSV files with mostly the same column names. But, the 'base' CSV files has gaps in its data, i.e. some cells are empty. Another CSV has data, but its too laborious to comb through it by hand. Use this CLI to fill in the gaps.
+
+=head1 Options
+
+=head2 Required Options
+
+=head3 base
+
+=head3 merge
+
+=head3 columns
+
+=head2 search
+
+=head2 Optional Options
+
+=head2 output
+
+=head2 first-row-is-headers
+
+Default is 1, or TRUE (Remember, Perl has no built-in Boolean).
 
 =head1 AUTHOR
 

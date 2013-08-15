@@ -12,7 +12,6 @@ lib/Text/CSV/Merge.pm
 t/00-load.t
 t/01-instantiate.t
 t/02-setters_and_getters.t
-t/author-critic.t
 t/boilerplate.t
 t/manifest.t
 t/merge.csv

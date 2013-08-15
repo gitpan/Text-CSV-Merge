@@ -1,5 +1,8 @@
 package Text::CSV::Merge;
-# ABSTRACT: Merge two CSV files
+{
+  $Text::CSV::Merge::VERSION = '0.03';
+}
+# ABSTRACT: Fill in gaps in a CSV file from another CSV file
 
 use Modern::Perl '2010';
 use Moo 1.001000;
@@ -90,7 +93,12 @@ has columns=> (
 has search_field => (
     is => 'rw',
     required => 1,
-    init_arg => 'search'
+    init_arg => 'search'#,
+    #isa => sub {
+        # validate that search_field is one of the columns in the base file
+        #die "Search parameter: '$_[0]' is not one of the columns: @{$self->columns}";
+        #    unless ( $_[0] ~~ @{$self->columns} );
+    #}
 );
 
 has first_row_is_headers => (
@@ -99,7 +107,7 @@ has first_row_is_headers => (
     #validate it
     isa => sub {
         # @TODO: there's got to be a better way to do this!
-        die "Must be 1 or 0" unless $_[0] =~ /'1'|'0'/ || $_[0] == 1 || $_[0] == 0;
+        die "Must be 1 or 0" unless ( $_[0] =~ /'1'|'0'/ || $_[0] == 1 || $_[0] == 0 );
     },
 );
 
@@ -112,6 +120,10 @@ has first_row_is_headers => (
 
 sub merge {
     my $self = shift;
+    
+    # validate that search_field is one of the columns in the base file
+    die "Search parameter: '$self->search_field' is not one of the columns: @{$self->columns}"
+        unless ( $self->search_field ~~ @{$self->columns} );
     
     $self->csv_parser->column_names( $self->columns );
         
@@ -209,11 +221,11 @@ __END__
 
 =head1 NAME
 
-Text::CSV::Merge - Merge two CSV files
+Text::CSV::Merge - Fill in gaps in a CSV file from another CSV file
 
 =head1 VERSION
 
-version 0.002
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -227,6 +239,9 @@ version 0.002
     });
 
     $merger->merge();
+    
+    ## Now, there is a new CSV file named 'merged_output.csv' by default, 
+    #  in the same directory as the code which called C<$merger->merge();>.
 
 =head1 DESCRIPTION
 
@@ -235,6 +250,7 @@ The use case for this module is when one has two CSV files of largely the same s
 In this initial release, Text::CSV::Merge only fills in empty cells; it does not overwrite data in 'into.csv' which also exists in 'from.csv'. 
 
 =head2 Subclassing
+
 Text::CSV::Merge may be subclassed. In the subclass, the following attributes may be overridden:
 
 =over 4
@@ -255,61 +271,72 @@ C<logger>
 
 =head1 ATTRIBUTES
 
-=head2 logger
+=head2 C<logger>
+
 The logger for all operations in this module.
 
 The logger records data gaps in the base CSV file, and records which data from the merge CSV file was used fill the gaps in the base CSV file.
 
-=head2 csv_parser
+=head2 C<csv_parser>
+
 The CSV parser used internally is an immutable class property. 
 
 The internal CSV parser is the XS version of Text::CSV: Text::CSV_XS. You may use Text::CSV::PP if you wish, but using any other parser which does not duplicate Text::CSV's API will probably not work without modifying the source of this module.
 
 Text::CSV_XS is also used, hard-coded, as the parser for DBD::CSV. This is configurable, however, and may be made configurable by the end-user in a future release. It can be overridden in a subclass. 
 
-=head2 dbh
+=head2 C<dbh>
+
 Create reusable DBI connection to the CSV data to be merged in to base file. 
 
 This method is overridable in a subclass. A good use of this would be to merge data into an existing CSV file from a database, or XML file. It must conform to the DBI's API, however.
 
 DBD::CSV is a base requirement for this module.
 
-=head2 base_file
+=head2 C<base_file>
+
 The CSV file into which new data will be merged.
 
 The base file is readonly, not read-write. This prevents accidental trashing of the original data.
 
-=head2 merge_file
+=head2 C<merge_file>
+
 The CSV file used to find data to merge into C<base_file>.
 
-=head2 output_file
+=head2 C<output_file>
+
 The output file into which the merge results are written. 
 
 I felt it imperative not to alter the original data files. I may make this a configurable option in the future, but wold likely set its default to 'false'.
 
-=head2 columns
+=head2 C<columns>
+
 The columns to be merged.
 
 A column to be merged must exist in both C<base_file> and C<merge_file>. Other than that requirement, each file may have other columns which do not exist in the other.
 
-=head2 search_field
+=head2 C<search_field>
+
 The column/field to match rows in C<merge_file>. 
 
-This column must exist in both files and be identially cased.
+This column must exist in both files and be identically cased.
 
-=head2 first_row_is_headers
+=head2 C<first_row_is_headers>
+
 1 if the CSV files' first row are its headers; 0 if not. 
 
 If there are no headers, then the column names supplied by the C<columns> argument/property are applied to the columns in each file virtually, in numerical orders as they were passed in the list.
 
 =head1 METHODS
 
-=head2 merge()
+=head2 C<merge()>
+
 Main method and is public.
 
 C<merge()> performs the actual merge of the two CSV files.
 
-=head2 DEMOLISH()
+=head2 C<DEMOLISH()>
+
 This method locally overrides a Moo built-in. 
 
 It close out all file handles, which will only occur after a call to C<merge()>.

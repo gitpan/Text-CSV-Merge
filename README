@@ -1,9 +1,9 @@
 
 
 This archive contains the distribution Text-CSV-Merge,
-version 0.002:
+version 0.03:
 
-  Merge two CSV files
+  Fill in gaps in a CSV file from another CSV file
 
 This software is copyright (c) 2013 by Michael Gatto.
 
