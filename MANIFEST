@@ -1,6 +1,7 @@
-Changes
+CHANGES
 LICENSE
 MANIFEST
+META.json
 META.yml
 Makefile.PL
 README
@@ -19,6 +20,5 @@ t/merge_from.csv
 t/merge_into.csv
 t/pod-coverage.t
 t/pod.t
-t/release-pod-coverage.t
 t/release-pod-syntax.t
 weaver.ini

@@ -25,7 +25,7 @@ requires:
   Modern::Perl: 0
   Moo: 1.001000
   Text::CSV_XS: 0
-  perl: 5.010
+  perl: 5.008
 resources:
-  repository: git://github.com/mgatto/Merge-CSV.git
-version: 0.03
+  repository: https://github.com/mgatto/Text--CSV--Merge.git
+version: 0.04

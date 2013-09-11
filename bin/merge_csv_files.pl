@@ -52,7 +52,7 @@ merge_csv_files.pl - Command line client to Text::CSV::Merge
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 Synopsis
 
@@ -74,17 +74,29 @@ You have two CSV files with mostly the same column names. But, the 'base' CSV fi
 
 =head3 base
 
+The CSV file into which you want to merge data.
+
 =head3 merge
+
+The CSV file with which you want to fill in data gaps in C<base>. 
 
 =head3 columns
 
-=head2 search
+A quoted, anonymous list of column names. Non-ASCII column names are as yet untested.
+
+=head3 search
+
+The column name by which you want to match up rows in C<base> and C<merge>.
 
 =head2 Optional Options
 
-=head2 output
+=head3 output
 
-=head2 first-row-is-headers
+Name of a file to which you want to direct the refined data. Default is C<merged.csv>.
+
+=head3 first-row-is-headers
+
+Specify 1 or 0 (or do not specify at all) to designate the first row of both CSV files as column headings.
 
 Default is 1, or TRUE (Remember, Perl has no built-in Boolean).
 

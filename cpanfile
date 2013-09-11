@@ -6,7 +6,7 @@ requires "Log::Dispatch" => "0";
 requires "Modern::Perl" => "0";
 requires "Moo" => "1.001000";
 requires "Text::CSV_XS" => "0";
-requires "perl" => "5.010";
+requires "perl" => "5.008";
 
 on 'test' => sub {
   requires "Test::More" => "0";
@@ -20,7 +20,5 @@ on 'configure' => sub {
 };
 
 on 'develop' => sub {
-  requires "Pod::Coverage::TrustPod" => "0";
   requires "Test::Pod" => "1.41";
-  requires "Test::Pod::Coverage" => "1.08";
 };

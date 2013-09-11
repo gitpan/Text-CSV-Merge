@@ -1,6 +1,6 @@
 package Text::CSV::Merge;
 {
-  $Text::CSV::Merge::VERSION = '0.03';
+  $Text::CSV::Merge::VERSION = '0.04';
 }
 # ABSTRACT: Fill in gaps in a CSV file from another CSV file
 
@@ -120,10 +120,12 @@ has first_row_is_headers => (
 
 sub merge {
     my $self = shift;
-    
+
     # validate that search_field is one of the columns in the base file
     die "Search parameter: '$self->search_field' is not one of the columns: @{$self->columns}"
-        unless ( $self->search_field ~~ @{$self->columns} );
+        unless ( scalar(grep { $_ eq $self->search_field } @{$self->columns}) );
+        # Use scalar() to force grep to return the number of matches; 
+        # 0 -> false for the 'unless' statement.
     
     $self->csv_parser->column_names( $self->columns );
         
@@ -225,7 +227,7 @@ Text::CSV::Merge - Fill in gaps in a CSV file from another CSV file
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
