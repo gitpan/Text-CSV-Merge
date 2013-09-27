@@ -1,10 +1,68 @@
 ==================================================
-Changes from 2012-09-11 00:00:00 +0000 to present.
+Changes from 2012-09-27 00:00:00 +0000 to present.
 ==================================================
 
 -----------------------------------------
-version 0.04 at 2013-09-11 21:48:13 +0000
+version 0.05 at 2013-09-27 17:47:10 +0000
 -----------------------------------------
+
+  Change: 4eb67573a21d88e564264664782bd87cf2188855
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-27 10:46:37 +0000
+
+    Merge tag 'vv0.05' into develop
+
+    Released v0.05. 
+
+  Change: 141ade0c5814e99974c7ace640a356171c9e27ff
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-27 10:45:46 +0000
+
+    Merge branch 'release/v0.05' 
+
+  Change: 3d75c481ec0989640dd4b77484473eb92d82200d
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-27 10:44:13 +0000
+
+    * Fix issue with Carp::Croak.
+
+    See: http://www.perlmonks.org/?node_id=587888 
+
+  Change: 86ba06dd6cdb3d4acebf26d58d893cf1e6d2145d
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-26 12:27:09 +0000
+
+    * Pass most critiques found by perlcritic --harsh. 
+
+  Change: 2eb662974bcb3723c0fdc76d686d1eba764fcfae
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-23 16:18:47 +0000
+
+    * Use /x flag per Perlcritic --harsh. 
+
+  Change: aa59b2dee96e5c620bbf7b7f308f9bc9eb6361cb
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-23 16:02:30 +0000
+
+    * Make change to $" local per Perlcritic. 
+
+  Change: 6517bc6352da324c3beb1d842701132074042123
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-23 15:51:30 +0000
+
+    * Add explicit return statements per Perlcritic. 
+
+  Change: 63d6101aadbeea4ae60b8f0200abbd2794eb3ba2
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-23 14:35:38 +0000
+
+    * Fix failing tests. 
+
+  Change: 6dde96619f01d3099a4f454318395b571ecd74f2
+  Author: Michael Gatto <mgatto@lisantra.com>
+  Date : 2013-09-19 14:54:13 +0000
+
+    * Add "provides" entries to META.YML. 
 
   Change: cc33583029dc69cee084f23ddfcb0ecffd8da77e
   Author: Michael Gatto <mgatto@lisantra.com>

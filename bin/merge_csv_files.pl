@@ -52,7 +52,7 @@ merge_csv_files.pl - Command line client to Text::CSV::Merge
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 Synopsis
 

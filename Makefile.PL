@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Text::CSV::Merge",
   "PREREQ_PM" => {
+    "Carp" => 0,
     "DBD::CSV" => 0,
     "DBI" => 0,
     "Getopt::Long" => 0,
@@ -36,7 +37,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.04",
+  "VERSION" => "0.05",
   "test" => {
     "TESTS" => "t/*.t"
   }

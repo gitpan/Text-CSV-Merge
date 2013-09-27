@@ -1,3 +1,4 @@
+requires "Carp" => "0";
 requires "DBD::CSV" => "0";
 requires "DBI" => "0";
 requires "Getopt::Long" => "0";
